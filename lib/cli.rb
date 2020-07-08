@@ -10,6 +10,6 @@ class Cli
     def user sign_up_or_sign_in
         $user = gets.strip
         puts "Hi ${user}"
-        
+    end 
      #create method 
 end
