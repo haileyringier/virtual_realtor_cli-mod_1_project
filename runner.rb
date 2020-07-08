@@ -1,6 +1,11 @@
 require_relative 'config/environment'
 
-Cli.new.start_game
+#starts a new cli instance, is the app
+app = Cli.new
+
+#welcome method app.welcome
+app.welcome
+
 
 
 
