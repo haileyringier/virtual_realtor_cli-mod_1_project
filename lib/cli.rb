@@ -9,7 +9,7 @@ class Cli
         puts "Hello there! May I get your name?"
         $name = gets.chomp
         # Put conditional: Already a client? If not, create.new client
-        puts "Hello #{$name}, Would you like to see a house today?"
+        puts "Hello #{$name}, Would you like to see a house today? Just say 'yes' or 'no'."
         # See if they would either like to see a house or look at previous viewings
         answer = gets.chomp
         # Ask Questions for their house selections. Insert method here
@@ -52,13 +52,13 @@ class Cli
         # Ask user which house they would like to view first
     end
     
-    def house_filter
-        available_houses = House.select do |house|
-            House[$client_bedroom] == house["bedrooms"] 
-            && House[$client_bathroom] == house["bathrooms"] 
-            # Insert conditional for boolean backyard
-        end
-    end
+    # def house_filter
+    #     available_houses = House.select do |house|
+    #         House[$client_bedroom] == house["bedrooms"] 
+    #         && House[$client_bathroom] == house["bathrooms"] 
+    #         # Insert conditional for boolean backyard
+    #     end
+    # end
 
      
 end
