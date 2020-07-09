@@ -12,6 +12,9 @@ app.backyard_prompt
 app.client_location
 app.house_filter
 app.view_house
+app.new_viewing
+app.houses_viewed
+# app.buy_house
 
 #binding.pry
 

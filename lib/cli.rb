@@ -8,15 +8,15 @@ class Cli
     @client_location = ""
     @available_houses = []
     @house_addresses = []
+    @user = nil
 
-def welcome_user
-puts "Welcome to Virtual Realtor"
-    prompt = TTY::Prompt.new
-    name = prompt.ask("May I get your name?")
-    answer = Client.all.name.include? name 
-    puts answer
-    if answer == false 
-    Client.create(name: name)
+    def welcome_user
+        puts "Welcome to Virtual Realtor"
+        prompt = TTY::Prompt.new
+        user_name = prompt.ask("May I get your name?")
+        answer = Client.all.name.include? user_name
+        if answer == false 
+            @user = Client.create(name: user_name)
     end
 
     def bedroom_prompt
@@ -62,32 +62,40 @@ puts "Welcome to Virtual Realtor"
 
     def view_house
         prompt = TTY::Prompt.new
-        @house_view = prompt.select("Which house would you like to view?", @house_addresses)
-        puts "Great! You'll be viewing #{@house_view}!"
+        house_address = prompt.select("Which house would you like to view?", @house_addresses)
+        puts "Great! You'll be viewing #{house_address}!"
+        @house_view = House.find_by(address: house_address)
+        return @house_view
         # Create new viewing. TEST vvvvvvvv
         #Viewing.create(client: , house: @house_view)
     end
 
+    def new_viewing
+        Viewing.create(client: @user, house: @house_view)
+    end
+
     def houses_viewed
-        @houses_viewed = Viewing.house
-        # @houses_viewed = []
-        # @houses_viewed << Cli.view_house
-        # puts @houses_viewed
+        puts "You have veiwed: "
+        @houses_viewed = @user.viewings.map do |viewing|
+            puts viewing.house.address
+            viewing.house.address
+        end
     end
 
-    def buy_house
-        prompt = TTY::Prompt.new
-        @house_bought = prompt.select("Which house would you like to buy? These are the houses you viewed", @houses_viewed)
-        puts "Congratulations! You just bought #{@house_bought}!"
-    end
-
-    # def delete
-    #     # When buy_house is run, delete the client and the house
-    #     # Make it a find_by all
-    #     user_delete = Client.find_by(name: "#{user}")
-    #     user_delete.destroy
-    #     house_delete = House.find_by(address: "#{@house_bought}")
+    # def buy_house
+    #     prompt = TTY::Prompt.new
+    #     @house_bought = prompt.select("Which house would you like to buy? These are the houses you viewed", @houses_viewed)
+    #     puts "Congratulations! You just bought #{@house_bought}!"
+    #     puts "Available houses are now #{House.all.pluck(:address)"
     # end
+
+    # # def delete
+    # #     # When buy_house is run, delete the client and the house
+    # #     # Make it a find_by all
+    # #     user_delete = Client.find_by(name: "#{user}")
+    # #     user_delete.destroy
+    # #     house_delete = House.find_by(address: "#{@house_bought}")
+    # # end
 
 end
 end
