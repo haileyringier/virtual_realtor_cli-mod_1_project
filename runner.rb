@@ -5,9 +5,15 @@ require_relative 'config/environment'
 app = Cli.new
 
 #welcome method app.welcome
-app.welcome
+app.welcome_user
+app.bedroom_prompt
+app.bathroom_prompt
+app.backyard_prompt
+app.client_location
+app.house_filter
 
-binding.pry
+
+#binding.pry
 
 
 
