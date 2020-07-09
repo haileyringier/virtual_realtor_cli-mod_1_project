@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_034425) do
+ActiveRecord::Schema.define(version: 2020_07_09_025029) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_034425) do
     t.integer "bathrooms"
     t.boolean "yard"
     t.string "location"
+    t.string "address"
   end
 
   create_table "viewings", force: :cascade do |t|
