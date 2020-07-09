@@ -82,7 +82,7 @@ class Cli
 
     def buy_house
         prompt = TTY::Prompt.new
-        @house_bought = prompt.select("Which house would you like to buy? These are the houses you viewed", @houses_viewed)
+        @house_bought = prompt.select("Below are the houses you have viewed. Select the one you would like to buy.", @houses_viewed)
         puts "Congratulations! You just bought #{@house_bought}!"
     end
 
