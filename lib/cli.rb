@@ -18,8 +18,6 @@ puts "Welcome to Virtual Realtor"
     if answer == false 
     Client.create(name: name)
     end
-    puts Client.name
-end
 
     def bedroom_prompt
         prompt = TTY::Prompt.new
@@ -60,16 +58,49 @@ end
     #     # Ask user which house they would like to view first
     # end
 
-def house_filter
-  @available_houses = House.all.find_all do |house|
-        house.bedrooms.to_i == @client_bedroom.to_i
+    def house_filter
+        @available_houses = House.all.find_all do |house|
+            house.bedrooms.to_i == @client_bedroom.to_i
         end.find_all do |house|
             house.bathrooms.to_i == @client_bathroom.to_i
-            end.find_all do |house|
-                house.yard == @client_yard
-            end.find_all do |house|
+        end.find_all do |house|
+            house.yard == @client_yard
+        end.find_all do |house|
             house.location.to_s == @client_location.to_s
+        end
+        puts @available_houses.var_names
     end
+
+    def view_house
+        prompt = TTY::Prompt.new
+        @house_view = prompt.select("Which house would you like to view?", @house_addresses)
+        puts "Great! You'll be viewing #{@house_view}!"
+        # Create new viewing. TEST vvvvvvvv
+        Viewing.create(client: , house: @house_view)
+    end
+
+    def houses_viewed
+        @houses_viewed = Viewing.house
+        # @houses_viewed = []
+        # @houses_viewed << Cli.view_house
+        # puts @houses_viewed
+    end
+
+    def buy_house
+        promp = TTY::Prompt.new
+        @house_bought = prompt.select("Which house would you like to buy? These are the houses you viewed", @houses_viewed)
+        puts "Congratulations! You just bought #{@house_bought}!"
+    end
+
+    def delete
+        # When buy_house is run, delete the client and the house
+        # Make it a find_by all
+        user_delete = Client.find_by(name: "#{user}")
+        user_delete.destroy
+        house_delete = House.find_by(address: "#{@house_bought)}")
+    end
+
+
      @house_addresses = @available_houses.map do |house|
         house.location
      end
