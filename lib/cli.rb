@@ -82,20 +82,23 @@ class Cli
         end
     end
 
-    # def buy_house
-    #     prompt = TTY::Prompt.new
-    #     @house_bought = prompt.select("Which house would you like to buy? These are the houses you viewed", @houses_viewed)
-    #     puts "Congratulations! You just bought #{@house_bought}!"
-    #     puts "Available houses are now #{House.all.pluck(:address)"
-    # end
+    def buy_house
+        prompt = TTY::Prompt.new
+        @house_bought = prompt.select("Which house would you like to buy? These are the houses you viewed", @houses_viewed)
+        puts "Congratulations! You just bought #{@house_bought}!"
+    end
 
-    # # def delete
-    # #     # When buy_house is run, delete the client and the house
-    # #     # Make it a find_by all
-    # #     user_delete = Client.find_by(name: "#{user}")
-    # #     user_delete.destroy
-    # #     house_delete = House.find_by(address: "#{@house_bought}")
-    # # end
+    def delete
+        # When buy_house is run, delete the client and the house
+        # Make it a find_by all
+        # user_delete = Client.find_by(name: @user)
+        @user.destroy
+        house_delete = House.find_by(address: @house_bought)
+        house_delete.destroy
+        puts "Available houses are now #{House.all.pluck(:address)}"
+    end
+    # Find way to display in cleaner fashion i.e. list
+    # When delete is run, must re-input seeds into database and migrate. Find workaround
 
 end
 end
