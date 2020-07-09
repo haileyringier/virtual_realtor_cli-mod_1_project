@@ -37,7 +37,7 @@ class Cli
         @client_yard = 
             prompt.yes?("Does your dream home have a backyard?", convert: :boolean)
     end
-    
+    # comment
     def client_location
         prompt = TTY::Prompt.new
        @client_location =  prompt.select("What city would you like your dream home to be in?", %w(Denver Littleton Boulder))
