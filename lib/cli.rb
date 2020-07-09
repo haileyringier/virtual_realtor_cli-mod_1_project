@@ -1,4 +1,4 @@
-# class Cli
+class Cli
 
     
     # See if variables can be kept within the method 
@@ -7,6 +7,7 @@
     @client_yard = true
     @client_location = ""
     @available_houses = []
+    @house_view = ""
 
 
     # def welcome_user
@@ -19,17 +20,18 @@
     #     # Ask Questions for their house selections. Insert method here
     # end
     
-def welcome_user
-puts "Welcome to Virtual Realtor"
-    prompt = TTY::Prompt.new
-    name = prompt.ask("May I get your name?")
-    answer = Client.all.name.include? name 
-    puts answer
-    if answer == false 
-    Client.create(name: name)
+    def welcome_user
+        puts "Welcome to Virtual Realtor"
+        prompt = TTY::Prompt.new
+        # name will need to be global so it can be used in delete method
+        user = prompt.ask("May I get your name (first and last)?")
+        answer = Client.all.name.include? user 
+        puts answer
+        if answer == false 
+            Client.create(name: user)
+        end
+        # puts Client.name
     end
-    puts Client.name
-end
 
 
     # def bedroom_prompt
@@ -103,18 +105,49 @@ end
     #     end
     # end
 
-def house_filter
-  @available_houses = House.all.find_all do |house|
-        house.bedrooms.to_i == @client_bedroom.to_i
+    def house_filter
+        @available_houses = House.all.find_all do |house|
+            house.bedrooms.to_i == @client_bedroom.to_i
         end.find_all do |house|
             house.bathrooms.to_i == @client_bathroom.to_i
-            end.find_all do |house|
-                house.yard == @client_yard
-            end.find_all do |house|
+        end.find_all do |house|
+            house.yard == @client_yard
+        end.find_all do |house|
             house.location.to_s == @client_location.to_s
+        end
+        puts @available_houses.var_names
     end
-    puts @available_houses.var_names
-end
+
+    def view_house
+        prompt = TTY::Prompt.new
+        @house_view = prompt.select("Which house would you like to view?", @house_addresses)
+        puts "Great! You'll be viewing #{@house_view}!"
+        # Create new viewing. TEST vvvvvvvv
+        Viewing.create(client: , house: @house_view)
+    end
+
+    def houses_viewed
+        @houses_viewed = Viewing.house
+        # @houses_viewed = []
+        # @houses_viewed << Cli.view_house
+        # puts @houses_viewed
+    end
+
+    def buy_house
+        promp = TTY::Prompt.new
+        @house_bought = prompt.select("Which house would you like to buy? These are the houses you viewed", @houses_viewed)
+        puts "Congratulations! You just bought #{@house_bought}!"
+    end
+
+    def delete
+        # When buy_house is run, delete the client and the house
+        # Make it a find_by all
+        user_delete = Client.find_by(name: "#{user}")
+        user_delete.destroy
+        house_delete = House.find_by(address: "#{@house_bought)}")
+    end
+
+
 
 end
  
