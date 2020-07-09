@@ -66,8 +66,6 @@ class Cli
         puts "Great! You'll be viewing #{house_address}!"
         @house_view = House.find_by(address: house_address)
         return @house_view
-        # Create new viewing. TEST vvvvvvvv
-        #Viewing.create(client: , house: @house_view)
     end
 
     def new_viewing
@@ -89,9 +87,6 @@ class Cli
     end
 
     def delete
-        # When buy_house is run, delete the client and the house
-        # Make it a find_by all
-        # user_delete = Client.find_by(name: @user)
         @user.destroy
         house_delete = House.find_by(address: @house_bought)
         house_delete.destroy
