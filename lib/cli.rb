@@ -17,6 +17,7 @@ class Cli
         answer = Client.all.name.include? user_name
         if answer == false 
             @user = Client.create(name: user_name)
+        end
     end
 
     def bedroom_prompt
@@ -68,7 +69,19 @@ class Cli
         return @house_view
     end
 
-    def new_viewing
+    def view_new_house
+        prompt = TTY::Prompt.new
+        @view_new_house = 
+            prompt.yes?("Would you like to view a new house?", convert: :boolean)
+        if @view_new_house == true
+            self.view_house
+            self.view_new_house
+        else
+            puts "No worries!"
+        end
+    end
+
+    def list_viewing
         Viewing.create(client: @user, house: @house_view)
     end
 
@@ -95,5 +108,5 @@ class Cli
     # Find way to display in cleaner fashion i.e. list
     # When delete is run, must re-input seeds into database and migrate. Find workaround
 
-end
+
 end

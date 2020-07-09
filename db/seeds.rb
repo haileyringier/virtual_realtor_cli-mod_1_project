@@ -39,4 +39,3 @@ house14 = House.create(bedrooms: 2, bathrooms: 1, yard: false, location: "Little
 house15 = House.create(bedrooms: 2, bathrooms: 1, yard: true, location: "Littleton", address: "5307 Cody St.")
 house16 = House.create(bedrooms: 2, bathrooms: 1, yard: true, location: "Littleton", address: "5425 Lowell Blvd.")
 house16 = House.create(bedrooms: 2, bathrooms: 2, yard: true, location: "Littleton", address: "8138 Stonybridge Circle")
-house16 = House.create(bedrooms: 2, bathrooms: 2, yard: false, location: "Littleton", address: "8517 Upham Way")
