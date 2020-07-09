@@ -1,7 +1,7 @@
 class Cli
 
     
-    # See if variables can be kept within the method 
+    #add user variable
     @client_bedroom = 0
     @client_bathroom = 0
     @client_yard = true
@@ -25,15 +25,6 @@ puts "Welcome to Virtual Realtor"
             prompt.select("How many bedrooms does your dream home have?", %w(1 2))
     end
 
-
-    # Allow User to select one of the choices. Make sure there are no duplicates
-    
-    # def bathroom_prompt
-    #     puts "How many bathrooms would you like your house to have? 1-2"
-    #     @client_bathroom = gets.strip
-    #end
-    # Allow User to select one of the choices. Make sure there are no duplicates
-    
     def bathroom_prompt
         prompt = TTY::Prompt.new
         @client_bathroom = 
@@ -51,13 +42,6 @@ puts "Welcome to Virtual Realtor"
        @client_location =  prompt.select("What city would you like your dream home to be in?", %w(Denver Littleton Boulder))
     end
     
-    # def house_options
-    #     # pull the houses that fulfill each filter
-    #     # House.select do 
-    #     # provide array of homes that fulfill filters
-    #     # Ask user which house they would like to view first
-    # end
-
     def house_filter
         @available_houses = House.all.find_all do |house|
             house.bedrooms.to_i == @client_bedroom.to_i
@@ -68,7 +52,12 @@ puts "Welcome to Virtual Realtor"
         end.find_all do |house|
             house.location.to_s == @client_location.to_s
         end
-        puts @available_houses.var_names
+        @house_addresses = @available_houses.map do |house|
+            house.address
+        end
+        n = @house_addresses.length
+        puts "#{n} house(s) matches your selections!"
+        puts @house_addresses
     end
 
     def view_house
@@ -76,7 +65,7 @@ puts "Welcome to Virtual Realtor"
         @house_view = prompt.select("Which house would you like to view?", @house_addresses)
         puts "Great! You'll be viewing #{@house_view}!"
         # Create new viewing. TEST vvvvvvvv
-        Viewing.create(client: , house: @house_view)
+        #Viewing.create(client: , house: @house_view)
     end
 
     def houses_viewed
@@ -87,27 +76,18 @@ puts "Welcome to Virtual Realtor"
     end
 
     def buy_house
-        promp = TTY::Prompt.new
+        prompt = TTY::Prompt.new
         @house_bought = prompt.select("Which house would you like to buy? These are the houses you viewed", @houses_viewed)
         puts "Congratulations! You just bought #{@house_bought}!"
     end
 
-    def delete
-        # When buy_house is run, delete the client and the house
-        # Make it a find_by all
-        user_delete = Client.find_by(name: "#{user}")
-        user_delete.destroy
-        house_delete = House.find_by(address: "#{@house_bought)}")
-    end
-
-
-     @house_addresses = @available_houses.map do |house|
-        house.location
-     end
-     n = @house_addresses.length
-    puts "#{n} house(s) match your selections"
-    puts @house_addresses
-end
+    # def delete
+    #     # When buy_house is run, delete the client and the house
+    #     # Make it a find_by all
+    #     user_delete = Client.find_by(name: "#{user}")
+    #     user_delete.destroy
+    #     house_delete = House.find_by(address: "#{@house_bought}")
+    # end
 
 end
- 
+end

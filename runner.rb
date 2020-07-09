@@ -11,7 +11,7 @@ app.bathroom_prompt
 app.backyard_prompt
 app.client_location
 app.house_filter
-
+app.view_house
 
 #binding.pry
 
