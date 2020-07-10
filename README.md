@@ -14,7 +14,7 @@ ActiveRecord - version 6.0.3.2
 SQLite3 - version 3.16
 
 # Setup
-To run this project, install it locally by cloning the GitHub repository and typing:
+To run this project, install it locally by cloning the GitHub repository and type:
 ```
   ruby runner.rb
 
