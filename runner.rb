@@ -4,7 +4,6 @@ require_relative 'config/environment'
 #starts a new cli instance, is the app
 app = Cli.new
 
-
 app.welcome_user
 app.house_quiz
 app.view_house

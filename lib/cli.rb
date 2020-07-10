@@ -15,7 +15,7 @@ class Cli
     end
 
     def welcome_user
-        box = TTY::Box.frame "Welcome to Virtual Realtor", padding: 1, align: :center, border: :thick
+        box = TTY::Box.frame "        HOMESUITE        ", "Welcome to Virtual Realtor!", padding: 1, align: :center, border: :thick
         puts box
         prompt = TTY::Prompt.new
         user_name = prompt.ask("May I get your name?")
