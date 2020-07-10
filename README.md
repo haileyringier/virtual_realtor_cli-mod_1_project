@@ -2,14 +2,23 @@
 
 # Table of Contents
 *[About](#about-homesuite)
+
 *[Video](#homesuite-walkthrough-video)
+
 *[Techonologies](#technologies)
+
 *[Setup](#setup)
+
 *[Code Examples](#code-examples)
+
 *[Features](#homesuite-features)
+
 *[Status](#status)
+
 *[Why HomeSuite](#why-homesuite)
+
 *[Contact](#contact)
+
 *[License](#license)
 
 
