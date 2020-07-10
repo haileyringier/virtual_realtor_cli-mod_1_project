@@ -6,16 +6,13 @@ app = Cli.new
 
 
 app.welcome_user
-app.bedroom_prompt
-app.bathroom_prompt
-app.backyard_prompt
-app.client_location
-app.house_filter
+app.house_quiz
 app.view_house
 app.new_viewing
 app.houses_viewed
 app.buy_house
 app.delete
+app.goodbye
 
 #binding.pry
 

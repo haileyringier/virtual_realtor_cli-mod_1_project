@@ -6,6 +6,7 @@ Viewing.destroy_all
 Client.destroy_all
 House.destroy_all
 
+
 # create 18-20 houses, beds max = 2, bath max = 2
 
 house1 = House.create(bedrooms: 1, bathrooms: 1, yard: true, location: "Denver", address: "3350 Clarkson St.")

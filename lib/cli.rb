@@ -1,7 +1,5 @@
 class Cli
 
-    
-    #add user variable
     @client_bedroom = 0
     @client_bathroom = 0
     @client_yard = true
@@ -9,14 +7,27 @@ class Cli
     @available_houses = []
     @house_addresses = []
     @user = nil
+    @house_view = nil
+    @houses_viewed = []
 
     def welcome_user
-        puts "Welcome to Virtual Realtor"
+        box = TTY::Box.frame "Welcome to Virtual Realtor", padding: 1, align: :center, border: :thick
+        puts box
         prompt = TTY::Prompt.new
         user_name = prompt.ask("May I get your name?")
         answer = Client.all.name.include? user_name
         if answer == false 
             @user = Client.create(name: user_name)
+    end
+
+    def house_quiz
+        puts "Answer a few questions to find your dream home!"
+        bedroom_prompt
+        bathroom_prompt
+        backyard_prompt
+        client_location
+        puts "You are one step closer to finding your home sweet home."
+        house_filter
     end
 
     def bedroom_prompt
@@ -56,8 +67,13 @@ class Cli
             house.address
         end
         n = @house_addresses.length
-        puts "#{n} house(s) matches your selections!"
-        puts @house_addresses
+        if n == 0
+            puts "No houses match your selection, please try again."
+            house_quiz
+        else
+            puts "#{n} house(s) matches your selections!"
+            puts @house_addresses
+        end
     end
 
     def view_house
@@ -73,17 +89,21 @@ class Cli
     end
 
     def houses_viewed
-        puts "You have veiwed: "
+        puts "You have viewed: "
         @houses_viewed = @user.viewings.map do |viewing|
             puts viewing.house.address
             viewing.house.address
         end
+        binding.pry
     end
 
     def buy_house
         prompt = TTY::Prompt.new
         @house_bought = prompt.select("Below are the houses you have viewed. Select the one you would like to buy.", @houses_viewed)
-        puts "Congratulations! You just bought #{@house_bought}!"
+        #puts "Congratulations! You just bought #{@house_bought}!"
+        box = TTY::Box.frame "CONGRATULATIONS!", "You just bought #{@house_bought}",
+            padding: 1, align: :center, border: :thick
+        puts box
     end
 
     def delete
@@ -94,6 +114,23 @@ class Cli
     end
     # Find way to display in cleaner fashion i.e. list
     # When delete is run, must re-input seeds into database and migrate. Find workaround
+
+    def goodbye
+        box = TTY::Box.frame "Thank for visiting Virtual Realtor!", "Have a great day!", 
+            padding: 1,
+            align: :center,
+            border: :thick
+        puts box
+    end
+
+    def options_menu
+        prompt = TTY::Prompt.new
+        prompt.select("What would you like to do?") do |menu|
+            menu.choice "Find a house"
+            menu.choice "See all the houses you have viewed"
+            menu.choice "Exit"
+        end
+    end
 
 end
 end
