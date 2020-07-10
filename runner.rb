@@ -13,7 +13,7 @@ app.client_location
 app.house_filter
 app.view_house
 app.view_new_house
-app.list_viewing
+# app.list_viewing
 app.houses_viewed
 app.buy_house
 app.delete
