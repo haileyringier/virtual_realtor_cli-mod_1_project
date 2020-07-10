@@ -59,13 +59,7 @@ This app is completed to carry out CRUD framework. Features buying and viewing f
 We created this app based on our own affinity for looking through home apps such as Realtor and Trulia. We wanted this app to be personalized and flexible unlike the apps out on the market so set on to build HomeSuite with that exact intention!
 
 # Contact
-Created by Hailey Ringier and Nyaradzo Bere
-
-Hailey Ringier: https://www.linkedin.com/in/hailey-ringier/
-
-Nayaradzo Bere: http://www.linkedin.com/in/nyaradzo-bere 
-
-Nayaradzo Bere: http://www.linkedin.com/in/nyaradzo-bere 
+Created by [Hailey Ringier](https://www.linkedin.com/in/hailey-ringier/) and [Nyaradzo Bere](http://www.linkedin.com/in/nyaradzo-bere)
 
 # License
 [View Here](License.txt)
