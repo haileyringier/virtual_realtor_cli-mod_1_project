@@ -107,15 +107,6 @@ class Cli
         #     house.address
         end
     end
-    # def houses_viewed
-    #     puts "You have veiwed: "
-    #     binding.pry
-    #     @houses_viewed = @user.reload.viewings.map do |viewing|
-    #         puts viewing.house.address
-    #         viewing.house.address
-    #     end
-    #     @houses_viewed
-    # end
 
     def buy_house
         prompt = TTY::Prompt.new
