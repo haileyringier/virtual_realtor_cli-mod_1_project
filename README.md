@@ -17,7 +17,7 @@ To run this project, install it locally by cloning the GitHub repository and typ
   ruby runner.rb
 
 ```
-#Code Examples
+# Code Examples
 
 ```
     def welcome_user
@@ -57,7 +57,9 @@ We created this app based on our own affinity for looking through home apps such
 
 # Contact
 Created by Hailey Ringier and Nyaradzo Bere
+
 Hailey Ringier: https://www.linkedin.com/in/hailey-ringier/
+
 Nayaradzo Bere: http://www.linkedin.com/in/nyaradzo-bere 
 
 
