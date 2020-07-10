@@ -8,7 +8,9 @@ HomeSuite is a CLI application that assists users in their home purchasing journ
 
 # Technologies
 Ruby - version 2.6.1
+
 ActiveRecord - version 6.0.3.2
+
 SQLite3 - version 3.16
 
 # Setup
