@@ -1,6 +1,6 @@
 # HomeSuite
 
-# Table of Contents
+## Table of Contents
 * [About](#about-homesuite)
 
 * [Video](#homesuite-walkthrough-video)
@@ -24,27 +24,27 @@
 
 
 
-# About HomeSuite
+## About HomeSuite
 HomeSuite is a CLI application that assists users in their home purchasing journey. The user starts out by providing their name and is soon prompted to give their preferences regarding their home purchase. Do they want a 2 bed 1 bath in Denver? Or do they prefer a 4 bed 3 bath in Boulder? View and view again until they decide on the house that is best.
 
 
 
 ## HomeSuite Walkthrough Video
 
-# Technologies
+## Technologies
 Ruby - version 2.6.1
 
 ActiveRecord - version 6.0.3.2
 
 SQLite3 - version 3.16
 
-# Setup
+## Setup
 To run this project, install it locally by cloning the GitHub repository and type:
 ```
   ruby runner.rb
 
 ```
-# Code Examples
+## Code Examples
 
 ```
     def welcome_user
@@ -71,20 +71,20 @@ To run this project, install it locally by cloning the GitHub repository and typ
         end
     end
 ```
-# HomeSuite Features
-1. Select home preferences (bedrooms, bathrooms, etc.)
-2. Display the homes which match the user's preferences
-3. Allows the user to choose a house(s) to view
-4. Allows the user to buy a house based, overall deleting the bought house from the database
+## HomeSuite Features
+* Select home preferences (bedrooms, bathrooms, etc.)
+* Display the homes which match the user's preferences
+* Allows the user to choose a house(s) to view
+* Allows the user to buy a house based, overall deleting the bought house from the database
 
-# Status
+## Status
 This app is completed to carry out CRUD framework. Features buying and viewing features could be expanded.
 
-# Why HomeSuite?
+## Why HomeSuite?
 We created this app based on our own affinity for looking through home apps such as Realtor and Trulia. We wanted this app to be personalized and flexible unlike the apps out on the market so set on to build HomeSuite with that exact intention!
 
-# Contact
+## Contact
 Created by [Hailey Ringier](https://www.linkedin.com/in/hailey-ringier/) and [Nyaradzo Bere](http://www.linkedin.com/in/nyaradzo-bere)
 
-# License
+## License
 [View Here](License.txt)
