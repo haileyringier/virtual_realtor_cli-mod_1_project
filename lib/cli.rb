@@ -134,7 +134,9 @@ class Cli
     def delete
         house_delete = House.find_by(address: @house_bought)
             house_delete.destroy
-        puts "Available houses are now #{House.all.pluck(:address)}"
+        box = TTY::Box.frame "Available houses are now: ", align: :center
+        puts box
+        puts House.all.pluck(:address)
     end
 
     def goodbye
