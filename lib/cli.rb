@@ -1,22 +1,30 @@
 class Cli
-
     
     #add user variable
-    @client_bedroom = 0
-    @client_bathroom = 0
-    @client_yard = true
-    @client_location = ""
-    @available_houses = []
-    @house_addresses = []
-    @user = nil
+   
+    attr_accessor :client_bedroom, :client_bathroom, :client_yard, :client_location, :available_houses, :house_addresses, :user, :houses_viewed, :house_bought
+
+    def initialize  client_bedroom = 0, client_bathroom = 0, client_yard = true, client_location = "", available_houses = [], house_addresses = [], user = nil, houses_viewed = [], house_bought = ""
+        @client_bedroom = client_bedroom
+        @client_bathroom = client_bathroom
+        @client_yard = client_yard
+        @client_location = client_location
+        @available_houses = available_houses
+        @house_addresses = house_addresses
+        @user = user
+        @houses_viewed = houses_viewed
+        @house_bought = house_bought
+    end
 
     def welcome_user
         puts "Welcome to Virtual Realtor"
         prompt = TTY::Prompt.new
         user_name = prompt.ask("May I get your name?")
-        answer = Client.all.name.include? user_name
+        answer = Client.pluck(:name).include? user_name
         if answer == false 
             @user = Client.create(name: user_name)
+        else
+            @user = Client.find_by(name: user_name)
         end
     end
 
@@ -37,7 +45,7 @@ class Cli
         @client_yard = 
             prompt.yes?("Does your dream home have a backyard?", convert: :boolean)
     end
-    
+    # comment
     def client_location
         prompt = TTY::Prompt.new
        @client_location =  prompt.select("What city would you like your dream home to be in?", %w(Denver Littleton Boulder))
@@ -59,6 +67,9 @@ class Cli
         n = @house_addresses.length
         puts "#{n} house(s) matches your selections!"
         puts @house_addresses
+        if n == 0
+            puts "#{n} house(s) matches your selections!"
+        end
     end
 
     def view_house
@@ -66,7 +77,8 @@ class Cli
         house_address = prompt.select("Which house would you like to view?", @house_addresses)
         puts "Great! You'll be viewing #{house_address}!"
         @house_view = House.find_by(address: house_address)
-        return @house_view
+        @house_view
+        Viewing.create(client: @user, house: @house_view)
     end
 
     def view_new_house
@@ -75,23 +87,35 @@ class Cli
             prompt.yes?("Would you like to view a new house?", convert: :boolean)
         if @view_new_house == true
             self.view_house
+
             self.view_new_house
         else
             puts "No worries!"
         end
     end
-
+    
     def list_viewing
         Viewing.create(client: @user, house: @house_view)
     end
 
     def houses_viewed
-        puts "You have veiwed: "
-        @houses_viewed = @user.viewings.map do |viewing|
-            puts viewing.house.address
-            viewing.house.address
+        puts "You have viewed: "
+        @houses_viewed = @user.houses.map do |house|
+            puts house.address
+            house.address
+        # end.map do |house|
+        #     house.address
         end
     end
+    # def houses_viewed
+    #     puts "You have veiwed: "
+    #     binding.pry
+    #     @houses_viewed = @user.reload.viewings.map do |viewing|
+    #         puts viewing.house.address
+    #         viewing.house.address
+    #     end
+    #     @houses_viewed
+    # end
 
     def buy_house
         prompt = TTY::Prompt.new
@@ -100,7 +124,7 @@ class Cli
     end
 
     def delete
-        @user.destroy
+        # @user.destroy
         house_delete = House.find_by(address: @house_bought)
         house_delete.destroy
         puts "Available houses are now #{House.all.pluck(:address)}"
