@@ -1,7 +1,5 @@
 class Cli
     
-    #add user variable
-   
     attr_accessor :client_bedroom, :client_bathroom, :client_yard, :client_location, :available_houses, :house_addresses, :user, :houses_viewed, :house_bought
 
     def initialize  client_bedroom = 0, client_bathroom = 0, client_yard = true, client_location = "", available_houses = [], house_addresses = [], user = nil, houses_viewed = [], house_bought = ""
@@ -17,7 +15,8 @@ class Cli
     end
 
     def welcome_user
-        puts "Welcome to Virtual Realtor"
+        box = TTY::Box.frame "        HOMESUITE        ", "Welcome to Virtual Realtor!", padding: 1, align: :center, border: :thick
+        puts box
         prompt = TTY::Prompt.new
         user_name = prompt.ask("May I get your name?")
         answer = Client.pluck(:name).include? user_name
@@ -28,27 +27,40 @@ class Cli
         end
     end
 
+    def house_quiz
+        puts "Answer a few questions to find your dream home!"
+        bedroom_prompt
+        bathroom_prompt
+        backyard_prompt
+        client_location
+        puts "You are one step closer to finding your home sweet home."
+        house_filter
+    end
+
     def bedroom_prompt
+        box = TTY::Box.frame "How many bedrooms does your dream home have?", align: :center
         prompt = TTY::Prompt.new
         @client_bedroom = 
-            prompt.select("How many bedrooms does your dream home have?", %w(1 2))
+            prompt.select(box, %w(1 2 3 4))
     end
 
     def bathroom_prompt
+        box = TTY::Box.frame "How many bathrooms does your dream home have?", align: :center
         prompt = TTY::Prompt.new
         @client_bathroom = 
-            prompt.select("How many bathrooms does your dream home have?", %w(1 2))
+            prompt.select(box, %w(1 2 3 4))
     end
 
     def backyard_prompt
+        box = TTY::Box.frame "Does your dream home have a backyard?", align: :center
         prompt = TTY::Prompt.new
-        @client_yard = 
-            prompt.yes?("Does your dream home have a backyard?", convert: :boolean)
+        @client_yard = prompt.yes?(box, convert: :boolean)
     end
-    # comment
+
     def client_location
+        box = TTY::Box.frame "What city would you like your dream home to be in?", align: :center
         prompt = TTY::Prompt.new
-       @client_location =  prompt.select("What city would you like your dream home to be in?", %w(Denver Littleton Boulder))
+       @client_location = prompt.select(box, %w(Denver Littleton Boulder))
     end
     
     def house_filter
@@ -65,29 +77,33 @@ class Cli
             house.address
         end
         n = @house_addresses.length
-        puts "#{n} house(s) matches your selections!"
-        puts @house_addresses
         if n == 0
-            puts "#{n} house(s) matches your selections!"
+            puts "No houses match your selection, please try again."
+            house_quiz
+        else
+            box = TTY::Box.frame "#{n} house(s) matches your selections!", align: :center
+            puts box
+            puts @house_addresses
         end
     end
 
     def view_house
+        box = TTY::Box.frame "Which house would you like to view?", align: :center
         prompt = TTY::Prompt.new
-        house_address = prompt.select("Which house would you like to view?", @house_addresses)
+        house_address = prompt.select(box, @house_addresses)
         puts "Great! You'll be viewing #{house_address}!"
         @house_view = House.find_by(address: house_address)
         @house_view
-        Viewing.create(client: @user, house: @house_view)
+        list_viewing
     end
 
     def view_new_house
+        box = TTY::Box.frame "Would you like to view another house?", align: :center
         prompt = TTY::Prompt.new
         @view_new_house = 
-            prompt.yes?("Would you like to view a new house?", convert: :boolean)
+            prompt.yes?(box, convert: :boolean)
         if @view_new_house == true
             self.view_house
-
             self.view_new_house
         else
             puts "No worries!"
@@ -99,29 +115,43 @@ class Cli
     end
 
     def houses_viewed
-        puts "You have viewed: "
+        box = TTY::Box.frame "You have viewed: ", align: :center
         @houses_viewed = @user.houses.map do |house|
             puts house.address
             house.address
-        # end.map do |house|
-        #     house.address
         end
     end
 
     def buy_house
+        box1 = TTY::Box.frame "Below are the houses you have viewed. Select the one you would like to buy.", align: :center
         prompt = TTY::Prompt.new
-        @house_bought = prompt.select("Below are the houses you have viewed. Select the one you would like to buy.", @houses_viewed)
-        puts "Congratulations! You just bought #{@house_bought}!"
+        @house_bought = prompt.select(box1, @houses_viewed)
+        box2 = TTY::Box.frame "CONGRATULATIONS!", "You just bought #{@house_bought}",
+            padding: 1, align: :center, border: :thick
+        puts box2
     end
 
     def delete
-        # @user.destroy
         house_delete = House.find_by(address: @house_bought)
-        house_delete.destroy
+            house_delete.destroy
         puts "Available houses are now #{House.all.pluck(:address)}"
     end
-    # Find way to display in cleaner fashion i.e. list
-    # When delete is run, must re-input seeds into database and migrate. Find workaround
 
+    def goodbye
+        box = TTY::Box.frame "Thank you for visiting Virtual Realtor!", "Have a great day!", 
+            padding: 1,
+            align: :center,
+            border: :thick
+        puts box
+    end
+
+    # def options_menu
+    #     prompt = TTY::Prompt.new
+    #     prompt.select("What would you like to do?") do |menu|
+    #         menu.choice "Find a house"
+    #         menu.choice "See all the houses you have viewed"
+    #         menu.choice "Exit"
+    #     end
+    # end
 
 end
