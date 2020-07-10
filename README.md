@@ -1,25 +1,25 @@
 # HomeSuite
 
 # Table of Contents
-*[About](#about-homesuite)
+* [About](#about-homesuite)
 
-*[Video](#homesuite-walkthrough-video)
+* [Video](#homesuite-walkthrough-video)
 
-*[Techonologies](#technologies)
+* [Techonologies](#technologies)
 
-*[Setup](#setup)
+* [Setup](#setup)
 
-*[Code Examples](#code-examples)
+* [Code Examples](#code-examples)
 
-*[Features](#homesuite-features)
+* [Features](#homesuite-features)
 
-*[Status](#status)
+* [Status](#status)
 
-*[Why HomeSuite](#why-homesuite)
+* [Why HomeSuite](#why-homesuite)
 
-*[Contact](#contact)
+* [Contact](#contact)
 
-*[License](#license)
+* [License](#license)
 
 
 
