@@ -16,7 +16,7 @@
 HomeSuite is a CLI application that assists users in their home purchasing journey. The user starts out by providing their name and is soon prompted to give their preferences regarding their home purchase. Do they want a 2 bed 1 bath in Denver? Or do they prefer a 4 bed 3 bath in Boulder? View and view again until they decide on the house that is best.
 
 ## HomeSuite Walkthrough Video
-[HomeSuite Virtual Realtor Walkthrough]
+[HomeSuite Virtual Realtor Walkthrough](https://youtu.be/eMHFxcF2l08)
 
 ## Technologies
 Ruby - version 2.6.1
@@ -66,7 +66,7 @@ To run this project, install it locally by cloning the GitHub repository and typ
 
 To-Do List:
 * Add API functionality to pull in houses currently on the market
-* Add details to homes viewed to allow for better knowledge of the homes features and history
+* Add details to homes viewed to allow for better knowledge of the home's features and history
 
 ## Status
 Completed.
