@@ -1,5 +1,21 @@
 # HomeSuite
 
+# Table of Contents
+[About](#about-homesuite)
+[Video](#homesuite-walkthrough-video)
+[Techonologies](#technologies)
+[Setup](#setup)
+[Code Examples](#code-examples)
+[Features](#homesuite-features)
+[Status](#status)
+[Why HomeSuite](#why-homesuite)
+[Contact](#contact)
+[License](#license)
+
+
+
+
+# About HomeSuite
 HomeSuite is a CLI application that assists users in their home purchasing journey. The user starts out by providing their name and is soon prompted to give their preferences regarding their home purchase. Do they want a 2 bed 1 bath in Denver? Or do they prefer a 4 bed 3 bath in Boulder? View and view again until they decide on the house that is best.
 
 
