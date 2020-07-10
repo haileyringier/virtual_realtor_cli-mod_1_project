@@ -138,7 +138,7 @@ class Cli
     end
 
     def goodbye
-        box = TTY::Box.frame "Thank for visiting Virtual Realtor!", "Have a great day!", 
+        box = TTY::Box.frame "Thank you for visiting Virtual Realtor!", "Have a great day!", 
             padding: 1,
             align: :center,
             border: :thick
