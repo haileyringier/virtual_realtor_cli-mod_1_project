@@ -65,5 +65,7 @@ Hailey Ringier: https://www.linkedin.com/in/hailey-ringier/
 
 Nayaradzo Bere: http://www.linkedin.com/in/nyaradzo-bere 
 
+Nayaradzo Bere: http://www.linkedin.com/in/nyaradzo-bere 
+
 # License
 [View Here](License.txt)
