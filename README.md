@@ -64,8 +64,14 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * Allows the user to choose a house(s) to view
 * Allows the user to buy a house based, overall deleting the bought house from the database
 
+To-Do List:
+* Add API functionality to pull in houses currently on the market
+* Add details to homes viewed to allow for better knowledge of the homes features and history
+
 ## Status
-This app is completed to carry out CRUD framework. Features buying and viewing features could be expanded.
+Completed.
+
+This app is built to carry out the CRUD framework
 
 ## Why HomeSuite?
 We created this app based on our own affinity for looking through home apps such as Realtor and Trulia. We wanted this app to be personalized and flexible unlike the apps out on the market so set on to build HomeSuite with that exact intention!
