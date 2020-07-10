@@ -23,7 +23,8 @@ To run this project, install it locally by cloning the GitHub repository and typ
 
 ```
     def welcome_user
-        puts "Welcome to Virtual Realtor"
+        box = TTY::Box.frame "        HOMESUITE        ", "Welcome to Virtual Realtor!", padding: 1, align: :center, border: :thick
+        puts box
         prompt = TTY::Prompt.new
         user_name = prompt.ask("May I get your name?")
         answer = Client.pluck(:name).include? user_name
